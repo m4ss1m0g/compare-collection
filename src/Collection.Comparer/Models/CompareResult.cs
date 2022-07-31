@@ -1,6 +1,10 @@
 namespace Collection.Comparer.Models;
 
-public sealed class CompareResult<TLocal, TRemote>
+/// <summary>
+/// Contains the compare result of Compare class
+/// </summary>
+/// <typeparam name="T">The initial enumerable type</typeparam>
+public class CompareResult<T>
 {
     /// <summary>
     /// Constructor
@@ -8,16 +12,25 @@ public sealed class CompareResult<TLocal, TRemote>
     /// <param name="deleted">Deleted items</param>
     /// <param name="changed">Changed items</param>
     /// <param name="inserted">Inserted items</param>
-    public CompareResult(IEnumerable<TLocal> deleted, IEnumerable<Tuple<TLocal, TRemote>> changed, IEnumerable<TRemote> inserted)
+    public CompareResult(IEnumerable<T> deleted, IEnumerable<Tuple<T, T>> changed, IEnumerable<T> inserted)
     {
         Deleted = deleted;
         Changed = changed;
         Inserted = inserted;
     }
 
-    public IEnumerable<TLocal> Deleted { get; }
+    /// <summary>
+    /// The list of deleted items
+    /// </summary>
+    public IEnumerable<T> Deleted { get; }
 
-    public IEnumerable<Tuple<TLocal, TRemote>> Changed { get; }
+    /// <summary>
+    /// The list of changed items
+    /// </summary>
+    public IEnumerable<Tuple<T, T>> Changed { get; }
 
-    public IEnumerable<TRemote> Inserted { get; }
+    /// <summary>
+    /// The list of inserted items
+    /// </summary>
+    public IEnumerable<T> Inserted { get; }
 }

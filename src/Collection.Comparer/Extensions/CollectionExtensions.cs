@@ -5,7 +5,7 @@ namespace Collection.Comparer.Extensions;
 public static class CollectionExtensions
 {
     public static void GetChangesOrInsert<T, TKey>(
-        this InMemoryCache cache,
+        this CompareEnumerables cache,
         string key,
         IEnumerable<T> current,
         Func<T, TKey> keySelector,
