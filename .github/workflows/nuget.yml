@@ -1,0 +1,47 @@
+name: NuGet
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build_and_publish:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: ./src/Collection.Comparer
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+      working-directory: ./src/Collection.Comparer
+    - name: Test
+      run: dotnet test --verbosity normal
+      working-directory: ./test/Collection.Comparer.Test
+    # Nuget 
+    - name: Get package version
+      id: getnuspec
+      uses: mavrosxristoforos/get-xml-info@1.1.0
+      with:
+        xml-file: 'src/Collection.Comparer/Collection.Comparer.nuspec'
+        xpath: '//package/metadata/version'
+    - name: Setup NuGet.exe for use with actions
+      uses: NuGet/setup-nuget@v1.0.6
+      with:
+         nuget-api-key: ${{ secrets.NUGET_APIKEY }}
+    - name: Create .nupkg
+      run: nuget pack Collection.Comparer.nuspec
+      working-directory: ./src/Collection.Comparer
+    - name: Publish package
+      run: nuget push Collection.Comparer.${{steps.getnuspec.outputs.info}}.nupkg -Source https://api.nuget.org/v3/index.json
+      working-directory: ./src/Collection.Comparer
+        

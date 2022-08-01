@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Collection.Comparer</id>
+    <version>0.1.0</version>
+    <title>Collection.Comparer</title>
+    <authors>mgiambona</authors>
+    <owners>mgiambona</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/m4ss1m0g/collection-comparer/</projectUrl>
+    <repository type="git" url="https://github.com/m4ss1m0g/collection-comparer.git" />
+    <description>
+      With this package you can compare two enumerables and get the differences.
+    </description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2022</copyright>
+    <icon>Images\logo.png</icon>
+    <tags>Dapper Collection Enumerables Comparer</tags>
+    <dependencies>
+      <group targetFramework="net6.0">
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Images\logo.png" target="Images\"/>
+    <file src="bin\Release\net6.0\Collection.Comparer.dll" target="lib\net6.0" />
+  </files>
+</package>
