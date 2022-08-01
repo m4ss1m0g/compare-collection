@@ -1,11 +1,12 @@
 using Collection.Comparer.Extensions;
+using Collection.Comparer.Models;
 
-namespace Collection.Comparer.Models;
+namespace Collection.Comparer;
 
 /// <summary>
 /// Compare enumerables and return a change sets.
 /// </summary>
-public class CompareEnumerables
+public class Compare
 {
     /// <summary>
     /// Compare two enumerables and return the compare result

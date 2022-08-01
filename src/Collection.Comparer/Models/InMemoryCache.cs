@@ -83,7 +83,7 @@ public class InMemoryCache
         }
 
         var cachedList = Get<T>(key);
-        return CompareEnumerables.GetChanges(cachedList, current, keySelector, compareFunc);
+        return Compare.GetChanges(cachedList, current, keySelector, compareFunc);
     }
 
     /// <summary>
@@ -128,7 +128,7 @@ public class InMemoryCache
         }
 
         var cachedList = Get<T>(key)!;
-        var changes = CompareEnumerables.GetChanges(cachedList, current, keySelector, compareFunc);
+        var changes = Compare.GetChanges(cachedList, current, keySelector, compareFunc);
 
         foreach (var item in changes.Changed)
         {

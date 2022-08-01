@@ -56,17 +56,51 @@ var list1 = connection.GetAsync<Foo>("SELECT ID, TITLE FROM CUSTOMERS");
 var cache = new InMemoryCache();
 cache.Add("MyKey", list1);
 
-// other code that CAN change the list1 then you can get dirrences between the actual list and the cached list using two methods
+/* 
+    code that change the list1 then you can get diffences between the actual list and the cached list
+*/
 
-// First get the differences
+// Method One: get the differences and loop through the results lists
 var differences = cache.GetChanges("MyKey", list1, p=> p.Id);
 
-// Second you can pass action for each of the change types
+// Method two: you can pass action for each of the change types
 cache.GetChages("MyKey", list, 
-                (n,o)=> // onUpdate -- n == new item , o old item,
+                (o,n)=> // onUpdate -- n == new item , o old item,
                 (n)=>   // onInsert -- n == new item
                 (d)=>   // onDelete -- d == deleted item
                 );
 
 
+```
+
+## Bonus
+
+There also an extension method to get differences from cache if any or insert all.
+
+> Note: the enumerable wont be added to the cache
+
+``` csharp
+
+class Foo
+{
+    public int Id { get; set; }
+
+    public string? Title { get; set; }
+}
+
+// suppose to get data using dapper or other micro-orm and create a list
+var list1 = connection.GetAsync<Foo>("SELECT ID, TITLE FROM CUSTOMERS");
+
+/* 
+    code that change the list1 then you can get diffences between the actual list and the cached list
+*/
+
+// if find the list inside cache start comparison, otherwise call the onInsert action
+var cache = new InMemoryCache();
+cache.GetChagesOrInsert("MyKey", 
+                list, 
+                (o,n)=> // onUpdate -- n == new item , o old item,
+                (n)=>   // onInsert -- n == new item
+                (d)=>   // onDelete -- d == deleted item
+                );
 ```

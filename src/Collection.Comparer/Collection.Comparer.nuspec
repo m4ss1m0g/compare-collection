@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Collection.Comparer</id>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <title>Collection.Comparer</title>
     <authors>mgiambona</authors>
     <owners>mgiambona</owners>
@@ -11,7 +11,7 @@
     <projectUrl>https://github.com/m4ss1m0g/collection-comparer/</projectUrl>
     <repository type="git" url="https://github.com/m4ss1m0g/collection-comparer.git" />
     <description>
-      With this package you can compare two enumerables and get the differences.
+      Compare two enumerables and get the differences.
     </description>
     <releaseNotes>Initial release</releaseNotes>
     <copyright>Copyright 2022</copyright>
@@ -19,6 +19,8 @@
     <tags>Dapper Collection Enumerables Comparer</tags>
     <dependencies>
       <group targetFramework="net6.0">
+        <dependency id="FastDeepCloner" version="1.3.6" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" />
       </group>
     </dependencies>
   </metadata>

@@ -44,6 +44,7 @@ public static class CollectionExtensions
         }
         else
         {
+            // cache.Add(key, current);
             foreach (var item in current)
             {
                 onInsert(item);

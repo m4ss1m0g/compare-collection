@@ -1,9 +1,8 @@
 using Bogus;
-using Collection.Comparer.Models;
 
-namespace Collection.Comparer.Test.Models;
+namespace Collection.Comparer.Test;
 
-public class ComparerEnumerablesTests
+public class CompareTests
 {
     class Product
     {
@@ -45,7 +44,7 @@ public class ComparerEnumerablesTests
         list2.AddRange(testProducts.Generate(2));
 
         // Act
-        var result = CompareEnumerables.GetChanges(list1, list2, p => p.Id);
+        var result = Compare.GetChanges(list1, list2, p => p.Id);
 
         // Assert
         Assert.Equal(3, result.Deleted.Count());
